@@ -1,9 +1,15 @@
-from coinbase_monitor.crud import get_asset, get_asset_stats
+from coinbase_monitor.crud import get_all_listed_assets, get_asset_stats
 
 
 def main():
-    asset_id = get_asset("bitcoin").id
-    print(get_asset_stats(asset_id))
+    limit = 11
+
+    for i, asset in enumerate(get_all_listed_assets()):
+        if i >= limit:
+            break
+
+        print(asset.name)
+        print(get_asset_stats(asset.id))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Generic, TypeVar
+from typing import Generic, Optional, TypeVar
 
 from pydantic import BaseModel
 from pydantic.generics import GenericModel
@@ -8,12 +8,18 @@ from pydantic.generics import GenericModel
 DataT = TypeVar('DataT')
 
 
+class PaginationResponse(BaseModel):
+    next_starting_after: str
+
+
 class DataResponse(GenericModel, Generic[DataT]):
     data: DataT
+    pagination: Optional[PaginationResponse]
 
 
 class Asset(BaseModel):
     id: str
+    name: str
 
 
 class AssetTractingActivitySignal(BaseModel):
