@@ -9,7 +9,7 @@ DataT = TypeVar('DataT')
 
 
 class PaginationResponse(BaseModel):
-    next_starting_after: str
+    next_starting_after: Optional[str]
 
 
 class DataResponse(GenericModel, Generic[DataT]):
@@ -20,16 +20,3 @@ class DataResponse(GenericModel, Generic[DataT]):
 class Asset(BaseModel):
     id: str
     name: str
-
-
-class AssetTractingActivitySignal(BaseModel):
-    updated_at: datetime
-    value: float
-
-
-class AssetSignals(BaseModel):
-    trading_activity: AssetTractingActivitySignal
-
-
-class AssetStats(BaseModel):
-    signals: AssetSignals

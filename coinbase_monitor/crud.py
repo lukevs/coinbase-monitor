@@ -2,7 +2,7 @@ from typing import Iterator, List, Optional
 
 import requests
 
-from .schemas import Asset, AssetStats, DataResponse
+from .schemas import Asset, DataResponse
 
 
 COINBASE_API_URL_BASE = "https://www.coinbase.com/api/v2"
@@ -56,9 +56,9 @@ def get_asset(asset_slug: str) -> Asset:
     return DataResponse[Asset](**response.json()).data
 
 
-def get_asset_stats(asset_id: str) -> AssetStats:
+def get_asset_stats(asset_id: str) -> dict:
     response = requests.get(
         f"{COINBASE_API_URL_BASE}{GET_STATS_PATH}/{asset_id}",
     )
 
-    return DataResponse[AssetStats](**response.json()).data
+    return DataResponse[dict](**response.json()).data
