@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# helm
+.helm/
+
+# tilt.dev
+tilt_modules/
