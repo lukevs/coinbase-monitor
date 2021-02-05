@@ -11,7 +11,7 @@ GET_STATS_PATH = "/assets/stats/"
 LIST_ASSETS_PATH = "/assets/search"
 
 
-def get_all_listed_assets() -> Iterator[Asset]:
+def get_all_listed_assets() -> Iterator[dict]:
     starting_after = None
 
     while True:
@@ -25,7 +25,7 @@ def get_all_listed_assets() -> Iterator[Asset]:
             break
 
 
-def _get_asset_page(asset_filter: str, starting_after: Optional[str]) -> DataResponse[List[Asset]]:
+def _get_asset_page(asset_filter: str, starting_after: Optional[str]) -> DataResponse[List[dict]]:
     params = {
         "base": "USD",
         "filter": asset_filter,
@@ -45,7 +45,7 @@ def _get_asset_page(asset_filter: str, starting_after: Optional[str]) -> DataRes
         params=params,
     )
 
-    return DataResponse[List[Asset]](**response.json())
+    return DataResponse[List[dict]](**response.json())
 
 
 def get_asset(asset_slug: str) -> Asset:
