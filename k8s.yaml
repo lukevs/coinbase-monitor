@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coinbase-monitor
+  labels:
+    app: coinbase-monitor
+spec:
+  selector:
+    matchLabels:
+      app: coinbase-monitor
+  template:
+    metadata:
+      labels:
+        app: coinbase-monitor
+    spec:
+      containers:
+        - name: coinbase-monitor
+          image: coinbase-monitor
+          ports:
+            - containerPort: 8080
