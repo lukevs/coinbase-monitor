@@ -1,4 +1,6 @@
-from coinbase_monitor.crud import get_all_listed_assets, get_asset_stats
+from coinbase_monitor.coinbase.crud import (
+    get_all_listed_assets, get_asset_stats
+)
 
 
 def handler(event, context):

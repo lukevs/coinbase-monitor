@@ -10,6 +10,8 @@ GET_ASSET_PATH = "/assets/info/"
 GET_STATS_PATH = "/assets/stats/"
 LIST_ASSETS_PATH = "/assets/search"
 
+LOCALSTACK_BASE_URL = "localstack:4566"
+
 
 def get_all_listed_assets() -> Iterator[dict]:
     starting_after = None
