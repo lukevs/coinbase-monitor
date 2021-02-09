@@ -133,3 +133,6 @@ dmypy.json
 
 # tilt.dev
 tilt_modules/
+
+# terraform
+terraform/local/.terraform/

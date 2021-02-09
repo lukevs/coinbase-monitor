@@ -18,3 +18,8 @@ spec:
           image: coinbase-monitor
           ports:
             - containerPort: 8080
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            value: "foobar"
+          - name: AWS_SECRET_ACCESS_KEY
+            value: "foobar"
