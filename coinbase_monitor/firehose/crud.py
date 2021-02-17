@@ -4,7 +4,7 @@ from typing import List
 import boto3
 
 
-STATS_STREAM_NAME = "coinbase-monitor-stats"
+STATS_STREAM_NAME = "coinbase-monitor-stats-stream"
 
 firehose_client = boto3.client(
     "firehose", endpoint_url="http://localstack:4566",
@@ -22,4 +22,5 @@ def write_stats(stats: List[dict]) -> None:
         Records=records,
     )
 
-    print(response)
+    if response["FailedRecordCount"] > 0:
+        raise RuntimeError(f"Failed to write stats: {response}")

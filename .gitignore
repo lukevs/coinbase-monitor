@@ -136,3 +136,6 @@ tilt_modules/
 
 # terraform
 terraform/local/.terraform/
+terraform/local/.terraform.lock.hcl
+terraform/local/terraform.tfstate
+terraform/local/terraform.tfstate.backup
