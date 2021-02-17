@@ -139,3 +139,7 @@ terraform/local/.terraform/
 terraform/local/.terraform.lock.hcl
 terraform/local/terraform.tfstate
 terraform/local/terraform.tfstate.backup
+terraform/prod/.terraform/
+terraform/prod/.terraform.lock.hcl
+terraform/prod/terraform.tfstate
+terraform/prod/terraform.tfstate.backup
