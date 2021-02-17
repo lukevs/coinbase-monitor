@@ -6,8 +6,11 @@ import boto3
 
 STATS_STREAM_NAME = "coinbase-monitor-stats-stream"
 
+# firehose_client = boto3.client(
+#     "firehose", endpoint_url="http://localstack:4566",
+# )
 firehose_client = boto3.client(
-    "firehose", endpoint_url="http://localstack:4566",
+    "firehose",
 )
 
 
@@ -22,5 +25,5 @@ def write_stats(stats: List[dict]) -> None:
         Records=records,
     )
 
-    if response["FailedRecordCount"] > 0:
+    if response["FailedPutCount"] > 0:
         raise RuntimeError(f"Failed to write stats: {response}")

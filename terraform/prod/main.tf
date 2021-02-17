@@ -24,9 +24,36 @@ resource "aws_iam_role" "coinbase_firehose_role" {
           Principal = {
             Service = "firehose.amazonaws.com"
           }
-        },
+        }
       ]
     })
+}
+
+resource "aws_iam_role_policy" "coinbase_firehose_role_s3_policy" {
+  name = "coinbase_firehose_role_s3_policy"
+  role = aws_iam_role.coinbase_firehose_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "s3:AbortMultipartUpload",
+          "s3:GetBucketLocation",
+          "s3:GetObject",
+          "s3:ListBucket",
+          "s3:ListBucketMultipartUploads",
+          "s3:PutObject"
+        ]
+        Effect = "Allow"
+        Sid    = ""
+        Resource = [
+            "${aws_s3_bucket.coinbase_monitor_stats_bucket.arn}",
+            "${aws_s3_bucket.coinbase_monitor_stats_bucket.arn}/*"
+        ]
+      },
+    ]
+  })
 }
 
 resource "aws_kinesis_firehose_delivery_stream" "coinbase_monitor_stats_stream" {
