@@ -1,4 +1,5 @@
 import time
+from datetime import datetime, timezone
 
 from coinbase_monitor.firehose.crud import write_stats
 from coinbase_monitor.coinbase.crud import (
@@ -11,7 +12,10 @@ def handler(event, context):
 
     for i, asset in enumerate(get_all_listed_assets()):
         stats = get_asset_stats(asset["id"])
-        all_stats.append(stats)
+        all_stats.append({
+            "timestamp": datetime.now(timezone.utc).timestamp(),
+            "stats": stats,
+        })
 
         # don't overload
         time.sleep(1)

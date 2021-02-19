@@ -9,6 +9,7 @@ STATS_STREAM_NAME = "coinbase-monitor-stats-stream"
 # firehose_client = boto3.client(
 #     "firehose", endpoint_url="http://localstack:4566",
 # )
+
 firehose_client = boto3.client(
     "firehose",
 )
@@ -16,7 +17,7 @@ firehose_client = boto3.client(
 
 def write_stats(stats: List[dict]) -> None:
     records = [
-        {"Data": json.dumps(stats_record)}
+        {"Data": json.dumps(stats_record) + "\n"}
         for stats_record in stats
     ]
 
